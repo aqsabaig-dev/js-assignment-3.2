@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Aurélie - Watches Showcase</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F9F6F0;
+      --card-bg: #FFFFFF;
+      --text-main: #1A1918;
+      --text-muted: #8C827A;
+      --border: #E8E2D9;
+      --accent: #B89255;
+      --accent-soft: #F2E8DC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* Header Styling */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+      display: inline-block;
+    }
+
+    header p::before,
+    header p::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent);
+    }
+    header p::before { left: -36px; }
+    header p::after { right: -36px; }
+
+    /* Card Styling */
+    .card {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(232, 226, 217, 0.6);
+    }
+
+    .image-container {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: #11141A;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .image-container img.fade-out {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+
+    /* Watch Details */
+    .details {
+      margin-bottom: 20px;
+    }
+
+    .category {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .title-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .title-price h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .title-price .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Progress Indicators (5 bars) */
+    .progress-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .segment {
+      flex: 1;
+      height: 3px;
+      background-color: var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .segment.active {
+      background-color: var(--accent);
+    }
+
+    /* Next Button */
+    .next-btn {
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .next-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Centered Luxury Header -->
+  <header>
+    <h1>MAISON AURÉLIE</h1>
+    <p>SIGNATURE WATCHES</p>
+  </header>
+
+  <!-- Main Card Showcase -->
+  <div class="card">
+    <div class="image-container">
+      <img id="watch-img" src="" alt="Watch Showcase" />
+    </div>
+
+    <div class="details">
+      <div class="category">WATCH</div>
+      <div class="title-price">
+        <h2 id="watch-title">Aurélie Classique</h2>
+        <div class="price" id="watch-price">$2,450</div>
+      </div>
+    </div>
+
+    <!-- 5 Progress Bars -->
+    <div class="progress-bar" id="progress-bar">
+      <div class="segment active"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+    </div>
+
+    <!-- Explore Next Button -->
+    <button class="next-btn" id="next-btn">NEXT PIECE &rarr;</button>
+  </div>
+
+  <script>
+    // =========================================================
+    // APNI IMAGES YAHAN CHANGE KAREIN:
+    // Simple path likhein (e.g., "./watch1.jpg" ya "images/watch1.png")
+    // =========================================================
+    const watches = [
+      {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKf_mPZp_V6Vbdre8jq-EJj5dPXUaR5uhA0QzOtb-SQ&s=10",
+        title: "Aurélie Classique",
+        price: "2,450"
+      },
+      {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMaGMuIAAeNmhN4SpVm2mRo3Z1kEjumOH1hrqxqQ1JMA&s=10",
+        title: "Chronographe Noir",
+        price: "$3,100"
+      },
+      {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEDOCqV3apD3D_uxYTOYW54Hr2kZv6qy_Ie-jejMOlxA&s=10",
+        title: "Minimaliste Blanc",
+        price: "1,950"
+      },
+      {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTppb3EkphREYUNkQJUqfIF_Ts7lEVLcc3ySxOUWBAQPA&s=10",
+        title: "Élégance Or",
+        price: "4,200"
+      },
+      {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVDgyFy1rF7ckWFw23XB-Nol7ppeOQIdbiTnIKg5AFYg&s=10",
+        title: "Grand Héritage",
+        price: "3,800"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    const imgElement = document.getElementById('watch-img');
+    const titleElement = document.getElementById('watch-title');
+    const priceElement = document.getElementById('watch-price');
+    const segments = document.querySelectorAll('.segment');
+    const nextBtn = document.getElementById('next-btn');
+
+    function updateWatch(index) {
+      imgElement.classList.add('fade-out');
+
+      setTimeout(() => {
+        imgElement.src = watches[index].url;
+        titleElement.textContent = watches[index].title;
+        priceElement.textContent = watches[index].price;
+
+        segments.forEach((seg, i) => {
+          if (i === index) {
+            seg.classList.add('active');
+          } else {
+            seg.classList.remove('active');
+          }
+        });
+
+        imgElement.classList.remove('fade-out');
+      }, 200);
+    }
+
+    // Initialize initial item
+    updateWatch(currentIndex);
+
+    // Button Click Event
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % watches.length;
+      updateWatch(currentIndex);
+    });
+
+    // Segment Click Events
+    segments.forEach((segment, i) => {
+      segment.addEventListener('click', () => {
+        currentIndex = i;
+        updateWatch(currentIndex);
+      });
+    });
+  </script>
+</body>
+</html>
